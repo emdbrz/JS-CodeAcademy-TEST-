@@ -1,26 +1,47 @@
-/* ------------------------------ TASK 1 ----------------------------
-Parašykite JS kodą, kuris leis vartotojui įvesti svorį kilogramais ir
-pamatyti jo pateikto svorio kovertavimą į:
-1. Svarus (lb) | Formulė: lb = kg * 2.2046
-2. Gramus (g) | Formulė: g = kg / 0.0010000
-3. Uncijos (oz) | Formulė: oz = kg * 35.274
+/* ------------------------------ TASK 4 -----------------------------------
+Parašykite JS kodą, kuris vartotojui atėjus į tinklapį kreipsis į cars.json failą ir 
+atvaizduos visus automobilių gamintojus bei pagamintus modelius. 
+Kiekvienas gamintojas turės savo atvaizdavimo "kortelę", kurioje bus 
+nurodomas gamintojas ir jo pagaminti modeliai.
 
-Pastaba: rezultatas turi būti matomas pateikus formą ir atvaizduojamas
-<div id="output"></div> viduje. Gautus atsakymus stilizuokite naudojant CSS;
-------------------------------------------------------------------- */
+Pastaba: Sukurta kortelė, kurioje yra informacija apie automobilį (brand), turi 
+būti stilizuota su CSS ir būti responsive;
+-------------------------------------------------------------------------- */
 
-const output = document.getElementById('output');
-const countKg = document.getElementById('submit-btn');
+const ENDPOINT = 'cars.json';
+const carsOutput = document.getElementById('output');
 
-countKg.addEventListener('click', function (e) {
-  e.preventDefault();
-  output.innerHTML = '';
-  const input = document.getElementById('search').value;
-  const pounds = input * 2.2046;
-  const grams = input / 0.001;
-  const ounce = input * 35.274;
+const cars = async () => {
+  try {
+    const response = await fetch(ENDPOINT);
+    const data = await response.json();
+    createCars(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+cars();
 
-  output.append(` Pounds: ${pounds}(lb),
-     Grams: ${grams}(g), 
-      Ounces: ${ounce}(oz)`);
-});
+const createCars = (cars) => {
+  cars.forEach((car) => {
+    const carsDiv = document.createElement('div');
+    const brandDiv = document.createElement('div');
+    const brandEl = document.createElement('h3');
+    const modelsDiv = document.createElement('div');
+    const modelEl = document.createElement('span');
+
+    carsDiv.classList.add('cars-container');
+    brandDiv.classList.add('brand');
+    modelsDiv.classList.add('all-models');
+
+    brandEl.textContent = car.brand;
+
+    const models = car.models.join(', ');
+    modelEl.textContent = models;
+
+    brandDiv.append(brandEl);
+    modelsDiv.append(modelEl);
+    carsDiv.append(brandDiv, modelEl);
+    carsOutput.append(carsDiv);
+  });
+};
