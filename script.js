@@ -1,26 +1,32 @@
-/* ------------------------------ TASK 1 ----------------------------
-Parašykite JS kodą, kuris leis vartotojui įvesti svorį kilogramais ir
-pamatyti jo pateikto svorio kovertavimą į:
-1. Svarus (lb) | Formulė: lb = kg * 2.2046
-2. Gramus (g) | Formulė: g = kg / 0.0010000
-3. Uncijos (oz) | Formulė: oz = kg * 35.274
+/* ------------------------------ TASK 5 -----------------------------------
+Turimas "users" masyvas. 
 
-Pastaba: rezultatas turi būti matomas pateikus formą ir atvaizduojamas
-<div id="output"></div> viduje. Gautus atsakymus stilizuokite naudojant CSS;
-------------------------------------------------------------------- */
+Parašykite funckijas, kurios atliks nurodytas užduotis:
+1. funkcija "filterDogOwners" - kaip argumentą priims masyvą ir duoto masyvo 
+atveju grąžins "users", kurie turi augintinį.
+2. funkcija "filterAdults" - kaip argumentą priims masyvą ir duoto masyvo 
+atveju grąžins masyvą su "users", kurie yra pilnamečiai.
+-------------------------------------------------------------------------- */
 
-const output = document.getElementById('output');
-const countKg = document.getElementById('submit-btn');
+const users = [
+  { id: '1', name: 'John Smith', age: 20, hasDog: true },
+  { id: '2', name: 'Ann Smith', age: 24, hasDog: false },
+  { id: '3', name: 'Tom Jones', age: 31, hasDog: true },
+  { id: '4', name: 'Rose Peterson', age: 17, hasDog: false },
+  { id: '5', name: 'Alex John', age: 25, hasDog: true },
+  { id: '6', name: 'Ronald Jones', age: 63, hasDog: true },
+  { id: '7', name: 'Elton Smith', age: 16, hasDog: true },
+  { id: '8', name: 'Simon Peterson', age: 30, hasDog: false },
+  { id: '9', name: 'Daniel Cane', age: 51, hasDog: true },
+];
 
-countKg.addEventListener('click', function (e) {
-  e.preventDefault();
-  output.innerHTML = '';
-  const input = document.getElementById('search').value;
-  const pounds = input * 2.2046;
-  const grams = input / 0.001;
-  const ounce = input * 35.274;
+// 1
+const filterDogOwners = users.filter((users) => users.hasDog);
 
-  output.append(` Pounds: ${pounds}(lb),
-     Grams: ${grams}(g), 
-      Ounces: ${ounce}(oz)`);
-});
+console.log(filterDogOwners);
+
+//2
+
+const filterAdults = users.filter((users) => users.age > 18);
+
+console.log(filterAdults);
