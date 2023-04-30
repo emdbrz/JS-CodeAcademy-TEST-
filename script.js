@@ -1,26 +1,31 @@
-/* ------------------------------ TASK 1 ----------------------------
-Parašykite JS kodą, kuris leis vartotojui įvesti svorį kilogramais ir
-pamatyti jo pateikto svorio kovertavimą į:
-1. Svarus (lb) | Formulė: lb = kg * 2.2046
-2. Gramus (g) | Formulė: g = kg / 0.0010000
-3. Uncijos (oz) | Formulė: oz = kg * 35.274
+/* ------------------------------ TASK 6 -----------------------------------
+Turimas "users" masyvas. 
 
-Pastaba: rezultatas turi būti matomas pateikus formą ir atvaizduojamas
-<div id="output"></div> viduje. Gautus atsakymus stilizuokite naudojant CSS;
-------------------------------------------------------------------- */
+Parašykite funckijas, kurios atliks nurodytas užduotis:
+1. funkcija "getUserAverageAge" - kaip argumentą priims masyvą ir duoto masyvo 
+atveju grąžins visų "users" amžiaus vidurkį kaip skaičių.
+2. funkcija "getUsersNames" -  kaip argumentą priims masyvą ir duoto masyvo 
+atveju grąžins visų "users" vardus naujame masyve pvz., ['John Smith', 'Ann Smith'..].
+-------------------------------------------------------------------------- */
 
-const output = document.getElementById('output');
-const countKg = document.getElementById('submit-btn');
+const users = [
+  { id: '1', name: 'John Smith', age: 20 },
+  { id: '2', name: 'Ann Smith', age: 24 },
+  { id: '3', name: 'Tom Jones', age: 31 },
+  { id: '4', name: 'Rose Peterson', age: 17 },
+  { id: '5', name: 'Alex John', age: 25 },
+  { id: '6', name: 'Ronald Jones', age: 63 },
+  { id: '7', name: 'Elton Smith', age: 16 },
+  { id: '8', name: 'Simon Peterson', age: 30 },
+  { id: '9', name: 'Daniel Cane', age: 51 },
+];
 
-countKg.addEventListener('click', function (e) {
-  e.preventDefault();
-  output.innerHTML = '';
-  const input = document.getElementById('search').value;
-  const pounds = input * 2.2046;
-  const grams = input / 0.001;
-  const ounce = input * 35.274;
+//1
+const getUserAverageAge = users.reduce((a, b) => a + b.age, 0) / users.length;
+const userAge = Math.round(getUserAverageAge);
+console.log(userAge);
 
-  output.append(` Pounds: ${pounds}(lb),
-     Grams: ${grams}(g), 
-      Ounces: ${ounce}(oz)`);
-});
+//2
+
+const getUsersNames = users.map((userNames) => userNames.name);
+console.log(getUsersNames);
