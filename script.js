@@ -1,26 +1,20 @@
-/* ------------------------------ TASK 1 ----------------------------
-Parašykite JS kodą, kuris leis vartotojui įvesti svorį kilogramais ir
-pamatyti jo pateikto svorio kovertavimą į:
-1. Svarus (lb) | Formulė: lb = kg * 2.2046
-2. Gramus (g) | Formulė: g = kg / 0.0010000
-3. Uncijos (oz) | Formulė: oz = kg * 35.274
+/* ------------------------------ TASK 8 --------------------------------------------
+Sukurkite konstruktoriaus funkciją "Calculator" (naudokite ES5), kuri gebės sukurti objektus su 4 metodais:
+sum(a, b) - priima du skaičius ir grąžina jų sumą.
+subtraction(a, b) - priima du skaičius ir grąžina jų skirtumą.
+multiplication(a, b) - priima du skaičius ir grąžina jų daugybos rezultatą;
+division(a, b) - priima du skaičius ir grąžina jų dalybos rezultatą;
+------------------------------------------------------------------------------------ */
 
-Pastaba: rezultatas turi būti matomas pateikus formą ir atvaizduojamas
-<div id="output"></div> viduje. Gautus atsakymus stilizuokite naudojant CSS;
-------------------------------------------------------------------- */
+function Calculator(a, b) {
+  const sum = a + b;
+  const subtraction = a - b;
+  const multiplication = a * b;
+  const division = a / b;
 
-const output = document.getElementById('output');
-const countKg = document.getElementById('submit-btn');
-
-countKg.addEventListener('click', function (e) {
-  e.preventDefault();
-  output.innerHTML = '';
-  const input = document.getElementById('search').value;
-  const pounds = input * 2.2046;
-  const grams = input / 0.001;
-  const ounce = input * 35.274;
-
-  output.append(` Pounds: ${pounds}(lb),
-     Grams: ${grams}(g), 
-      Ounces: ${ounce}(oz)`);
-});
+  console.log(subtraction);
+  console.log(multiplication);
+  console.log(division);
+  console.log(sum);
+}
+Calculator(8, 5);
