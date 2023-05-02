@@ -1,26 +1,30 @@
-/* ------------------------------ TASK 1 ----------------------------
-Parašykite JS kodą, kuris leis vartotojui įvesti svorį kilogramais ir
-pamatyti jo pateikto svorio kovertavimą į:
-1. Svarus (lb) | Formulė: lb = kg * 2.2046
-2. Gramus (g) | Formulė: g = kg / 0.0010000
-3. Uncijos (oz) | Formulė: oz = kg * 35.274
+/* ------------------------------ TASK 9 ---------------------------------------------------------------
+Sukurkite konstruktoriaus funkciją "Movie" (naudokte ES6), kuri gebės sukurti objektus 3 savybėm ir 1 metodu.
 
-Pastaba: rezultatas turi būti matomas pateikus formą ir atvaizduojamas
-<div id="output"></div> viduje. Gautus atsakymus stilizuokite naudojant CSS;
-------------------------------------------------------------------- */
+Savybės:
+title: string
+director: string
+budget: number
 
-const output = document.getElementById('output');
-const countKg = document.getElementById('submit-btn');
+Metodas: 
+wasExpensive() - jeigu filmo "budget" yra daugiau nei 100 000 000 mln USD, tada grąžins true, kitu atveju false. 
+------------------------------------------------------------------------------------------------------ */
 
-countKg.addEventListener('click', function (e) {
-  e.preventDefault();
-  output.innerHTML = '';
-  const input = document.getElementById('search').value;
-  const pounds = input * 2.2046;
-  const grams = input / 0.001;
-  const ounce = input * 35.274;
-
-  output.append(` Pounds: ${pounds}(lb),
-     Grams: ${grams}(g), 
-      Ounces: ${ounce}(oz)`);
-});
+class Movie {
+  constructor(title, director, budget) {
+    this.title = title;
+    this.director = director;
+    this.budget = budget;
+  }
+  wasExpensive() {
+    return this.budget > 100000000;
+  }
+}
+const myMovieTest = new Movie('Scary Js', 'CodeAcademy', 4000);
+const realMovie = new Movie(
+  'Star Wars: The Force Awakens',
+  ' J. J. Abrams',
+  44700000000
+);
+console.log(myMovieTest.wasExpensive());
+console.log(realMovie.wasExpensive());
